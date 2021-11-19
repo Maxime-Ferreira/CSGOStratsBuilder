@@ -1,0 +1,33 @@
+﻿<Window x:Class="CSGOStratsBuilder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CSGOStratsBuilder"
+        xmlns:views="clr-namespace:CSGOStratsBuilder.Views"
+        xmlns:viewmodels="clr-namespace:CSGOStratsBuilder.ViewModels"
+        xmlns:components="clr-namespace:CSGOStratsBuilder.Model.Components"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="CSGO Strategy Builder" Height="720" Width="1280">
+    <Grid>
+        <Grid.Resources>
+            <DataTemplate x:Name="addTeamView" DataType="{x:Type viewmodels:AddTeamViewModel}">
+                <views:AddTeamView/>
+            </DataTemplate>
+            <DataTemplate x:Name="chooseTeamView" DataType="{x:Type viewmodels:ChooseTeamViewModel}">
+                <views:ChooseTeamView/>
+            </DataTemplate>
+            <DataTemplate x:Name="stratView" DataType="{x:Type viewmodels:StratViewModel}">
+                <views:StratView/>
+            </DataTemplate>
+            <DataTemplate x:Name="configView" DataType="{x:Type viewmodels:ConfigViewModel}">
+                <views:ConfigView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:LayoutViewModel}">
+                <components:Layout />
+            </DataTemplate>
+        </Grid.Resources>
+        <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="4" Content="{Binding CurrentViewModel}"/>
+    </Grid>
+</Window>
