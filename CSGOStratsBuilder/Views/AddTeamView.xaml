@@ -5,9 +5,45 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CSGOStratsBuilder.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="686.08" d:DesignWidth="1280">
-    <Grid>
-        <Button x:Name="addTeamValid" Content="Ajouter" HorizontalAlignment="Center" Margin="0,392,0,0" VerticalAlignment="Top" Height="26" Width="120" Click="addTeamValid_Click"/>
-        <TextBox x:Name="textTeam" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Width="400" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            FontSize="28"
+            Text="Add Team" />
+
+        <Grid Grid.Row="1" Margin="0 20 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="Name" />
+            <TextBox
+                Grid.Row="1"
+                Margin="0 5 0 0"
+                Text="{Binding Name}" />
+        </Grid>
+
+        <StackPanel
+            Grid.Row="2"
+            Margin="0 20 0 0"
+            Orientation="Horizontal">
+            <Button
+                Padding="10 5"
+                Command="{Binding SubmitCommand}"
+                Content="Submit" />
+            <Button
+                Margin="5 0 0 0"
+                Padding="10 5"
+                Command="{Binding CancelCommand}"
+                Content="Cancel" />
+        </StackPanel>
     </Grid>
 </UserControl>

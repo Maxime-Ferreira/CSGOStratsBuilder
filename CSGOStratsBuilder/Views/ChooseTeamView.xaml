@@ -3,17 +3,46 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CSGOStratsBuilder.Views"
-             xmlns:views="clr-namespace:CSGOStratsBuilder.Views"
-             xmlns:viewmodels="clr-namespace:CSGOStratsBuilder.ViewModels"
-             mc:Ignorable="d" 
-             d:DesignHeight="686.08" d:DesignWidth="1280">
+             mc:Ignorable="d" d:DesignWidth="800" Height="450">
     <Grid>
-        <ListBox x:Name="teamList"  Margin="508,116,508,184"/>
-        <Label Content="Choisissez une équipe parmis cette liste" HorizontalAlignment="Center" Margin="0,7,0,0" VerticalAlignment="Top" Width="222"/>
-        <Label Content="Votre équipe ne figure pas ? Cliquez sur le bouton suivant pour en ajouter une" HorizontalAlignment="Center" Margin="0,38,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.557,0.468" Width="432"/>
-        <Button Content="Ajouter votre équipe" HorizontalAlignment="Left" Margin="898,33,0,0" VerticalAlignment="Top" Command="{Binding NavigateAddTeamCommand}" Height="36" Width="134"/>
-        <Button Content="Valider l'équipe choisie" HorizontalAlignment="Center" Margin="0,537,0,0" VerticalAlignment="Top" Command="{Binding NavigateConfigCommand}" Width="154" Height="26" Background="LightGreen"/>
-        <Button Content="Supprimer l'équipe choisie" HorizontalAlignment="Center" Margin="0,591,0,0" VerticalAlignment="Top" Width="154" Height="26" Background="Red" Click="DeleteTeam_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <TextBlock FontSize="28" Text="Teams" />
+            <Button
+                Margin="10 0 0 0"
+                Padding="10 5"
+                VerticalAlignment="Center"
+                Command="{Binding AddTeamCommand}"
+                Content="Ajouter une équipe" />
+            <Button
+                Margin="10 0 0 0"
+                Padding="10 5"
+                VerticalAlignment="Center"
+                Command="{Binding NavigateConfigCommand}"
+                Background="LightGreen"
+                Content="Configurer l'équipe choisie" />
+            <Button
+                Margin="10 0 0 0"
+                Padding="10 5"
+                VerticalAlignment="Center"
+                Command="{Binding AddTeamCommand}"
+                Background="IndianRed"
+                Content="Supprimer l'équipe choisie" />
+        </StackPanel>
+
+        <ListView
+            Grid.Row="1"
+            Margin="0 20 0 0"
+            ItemsSource="{Binding Team}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Teams" />
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </UserControl>

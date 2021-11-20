@@ -17,15 +17,16 @@ namespace CSGOStratsBuilder {
             IServiceCollection services = new ServiceCollection();
 
             services.AddSingleton<NavigationStore>();
+            services.AddSingleton<TeamStore>();
             services.AddSingleton<ModalNavigationStore>();
 
             services.AddSingleton<INavigationService>(s => CreateChooseTeamNavigationService(s));
             services.AddSingleton<CloseModalNavigationService>();
 
-            services.AddTransient<AddTeamViewModel>(s => new AddTeamViewModel());
+            services.AddTransient<AddTeamViewModel>(s => new AddTeamViewModel(s.GetRequiredService<TeamStore>(), s.GetRequiredService<CloseModalNavigationService>()));
             services.AddTransient<ConfigViewModel>(s => new ConfigViewModel());
             services.AddTransient<StratViewModel>(s => new StratViewModel());
-            services.AddTransient<ChooseTeamViewModel>(s => new ChooseTeamViewModel(CreateAddTeamNavigationService(s)));
+            services.AddTransient<ChooseTeamViewModel>(s => new ChooseTeamViewModel(s.GetRequiredService<TeamStore>(), CreateAddTeamNavigationService(s), CreateConfigNavigationService(s)));
             services.AddTransient<NavigationBarViewModel>(CreateNavigationBarViewModel);
             services.AddSingleton<MainViewModel>();
 
@@ -47,10 +48,9 @@ namespace CSGOStratsBuilder {
         }
 
         private INavigationService CreateAddTeamNavigationService(IServiceProvider serviceProvider) {
-            return new LayoutNavigationService<AddTeamViewModel>(
-                serviceProvider.GetRequiredService<NavigationStore>(),
-                () => serviceProvider.GetRequiredService<AddTeamViewModel>(),
-                () => serviceProvider.GetRequiredService<NavigationBarViewModel>());
+            return new ModalNavigationService<AddTeamViewModel>(
+                 serviceProvider.GetRequiredService<ModalNavigationStore>(),
+                 () => serviceProvider.GetRequiredService<AddTeamViewModel>());
         }
 
         private INavigationService CreateConfigNavigationService(IServiceProvider serviceProvider) {
@@ -75,8 +75,7 @@ namespace CSGOStratsBuilder {
         }
 
         private NavigationBarViewModel CreateNavigationBarViewModel(IServiceProvider serviceProvider) {
-            return new NavigationBarViewModel(CreateAddTeamNavigationService(serviceProvider),
-                CreateConfigNavigationService(serviceProvider),
+            return new NavigationBarViewModel(CreateChooseTeamNavigationService(serviceProvider),
                 CreateStratNavigationService(serviceProvider));
         }
     }

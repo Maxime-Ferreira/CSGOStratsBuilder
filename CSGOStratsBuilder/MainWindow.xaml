@@ -7,9 +7,10 @@
         xmlns:views="clr-namespace:CSGOStratsBuilder.Views"
         xmlns:viewmodels="clr-namespace:CSGOStratsBuilder.ViewModels"
         xmlns:components="clr-namespace:CSGOStratsBuilder.Model.Components"
+        xmlns:custom="clr-namespace:ModalControl;assembly=ModalControl"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="CSGO Strategy Builder" Height="720" Width="1280">
+        Title="CSGO Strategy Builder" Height="450" Width="800">
     <Grid>
         <Grid.Resources>
             <DataTemplate x:Name="addTeamView" DataType="{x:Type viewmodels:AddTeamViewModel}">
@@ -28,6 +29,11 @@
                 <components:Layout />
             </DataTemplate>
         </Grid.Resources>
+
+        <custom:Modal Panel.ZIndex="1" IsOpen="{Binding IsOpen}">
+            <ContentControl Content="{Binding CurrentModalViewModel}" />
+        </custom:Modal>
+        
         <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="4" Content="{Binding CurrentViewModel}"/>
     </Grid>
 </Window>
