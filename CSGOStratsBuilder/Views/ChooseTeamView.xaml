@@ -22,7 +22,8 @@
                 Margin="10 0 0 0"
                 Padding="10 5"
                 VerticalAlignment="Center"
-                Command="{Binding NavigateConfigCommand}"
+                CommandParameter="{Binding SelectedItems, ElementName=listTeams}"
+                Command="{Binding ConfigCommand}"
                 Background="LightGreen"
                 Content="Configurer l'équipe choisie" />
             <Button
@@ -35,9 +36,11 @@
         </StackPanel>
 
         <ListView
+            x:Name="listTeams"
             Grid.Row="1"
             Margin="0 20 0 0"
-            ItemsSource="{Binding Team}">
+            ItemsSource="{Binding Team}"
+            SelectionMode="Single">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Teams" />

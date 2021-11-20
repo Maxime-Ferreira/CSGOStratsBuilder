@@ -17,14 +17,14 @@ namespace CSGOStratsBuilder.ViewModels {
 
         public IEnumerable<TeamViewModel> Team => _team;
         public ICommand AddTeamCommand { get; }
-        public ICommand NavigateConfigCommand { get; }
+        public ICommand ConfigCommand { get; }
 
         public ChooseTeamViewModel(TeamStore teamStore, INavigationService addTeamNavigationService, INavigationService configNavigationService) {
             List<string> teamsAlreadyAdded = readTeamFile.Execute();
 
             _teamStore = teamStore;
             AddTeamCommand = new NavigateCommand(addTeamNavigationService);
-            NavigateConfigCommand = new NavigateCommand(configNavigationService);
+            ConfigCommand = new ConfigTeamCommand(configNavigationService);
             _team = new ObservableCollection<TeamViewModel>();
             foreach(string team in teamsAlreadyAdded) {
                 _team.Add(new TeamViewModel(team));
