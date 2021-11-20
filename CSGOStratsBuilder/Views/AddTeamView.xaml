@@ -38,12 +38,12 @@
             <Button
                 Padding="10 5"
                 Command="{Binding SubmitCommand}"
-                Content="Submit" />
+                Content="Valider" />
             <Button
                 Margin="5 0 0 0"
                 Padding="10 5"
                 Command="{Binding CancelCommand}"
-                Content="Cancel" />
+                Content="Annuler" />
         </StackPanel>
     </Grid>
 </UserControl>

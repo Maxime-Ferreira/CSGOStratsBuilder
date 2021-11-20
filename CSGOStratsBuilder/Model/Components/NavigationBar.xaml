@@ -49,13 +49,13 @@
             Text="CSGO Strats Builder" />
 
         <Button
-            Grid.Column="2"
+            Grid.Column="1"
             Margin="10 0 0 0"
             Command="{Binding NavigateConfigCommand}"
             Content="Configurer une équipe" />
 
         <Button
-            Grid.Column="3"
+            Grid.Column="2"
             Margin="10 0 0 0"
             Command="{Binding NavigateStratCommand}"
             Content="Stratégies" />
