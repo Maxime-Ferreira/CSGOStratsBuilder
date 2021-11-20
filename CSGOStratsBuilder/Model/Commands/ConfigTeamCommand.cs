@@ -1,11 +1,6 @@
 ﻿using CSGOStratsBuilder.Model.Services;
-using CSGOStratsBuilder.Model.Stores;
 using CSGOStratsBuilder.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 
 namespace CSGOStratsBuilder.Model.Commands {
     public class ConfigTeamCommand : CommandBase {

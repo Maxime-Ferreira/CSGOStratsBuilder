@@ -4,8 +4,7 @@ using System;
 
 namespace CSGOStratsBuilder.Model.Services
 {
-    public class ModalNavigationService<TViewModel> : INavigationService 
-        where TViewModel : BaseViewModel
+    public class ModalNavigationService<TViewModel> : INavigationService where TViewModel : BaseViewModel
     {
         private readonly ModalNavigationStore _navigationStore;
         private readonly Func<TViewModel> _createViewModel;

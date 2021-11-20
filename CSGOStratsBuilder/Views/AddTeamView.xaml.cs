@@ -1,6 +1,4 @@
-﻿using CSGOStratsBuilder.ViewModels;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace CSGOStratsBuilder.Views {
     /// <summary>

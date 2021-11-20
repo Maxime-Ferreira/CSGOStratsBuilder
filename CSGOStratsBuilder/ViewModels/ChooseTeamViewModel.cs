@@ -9,16 +9,15 @@ using System.Windows.Input;
 namespace CSGOStratsBuilder.ViewModels {
     public class ChooseTeamViewModel : BaseViewModel {
         private readonly TeamStore _teamStore;
-
         private readonly ObservableCollection<TeamViewModel> _team;
-
-        private CreateTeamFile createTeamFile = new CreateTeamFile();
-        private ReadTeamFile readTeamFile = new ReadTeamFile();
 
         public IEnumerable<TeamViewModel> Team => _team;
         public ICommand AddTeamCommand { get; }
         public ICommand ConfigCommand { get; }
         public ICommand DeleteTeamCommand { get; }
+
+        private CreateTeamFile createTeamFile = new CreateTeamFile();
+        private ReadTeamFile readTeamFile = new ReadTeamFile();
 
         public ChooseTeamViewModel(TeamStore teamStore, INavigationService addTeamNavigationService, INavigationService configNavigationService) {
             List<string> teamsAlreadyAdded = readTeamFile.Execute();
