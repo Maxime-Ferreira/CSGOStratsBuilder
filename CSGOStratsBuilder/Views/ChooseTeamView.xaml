@@ -30,7 +30,8 @@
                 Margin="10 0 0 0"
                 Padding="10 5"
                 VerticalAlignment="Center"
-                Command="{Binding AddTeamCommand}"
+                CommandParameter="{Binding SelectedItems, ElementName=listTeams}"
+                Command="{Binding DeleteTeamCommand}"
                 Background="IndianRed"
                 Content="Supprimer l'équipe choisie" />
         </StackPanel>
