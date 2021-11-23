@@ -1,6 +1,5 @@
 ﻿using CSGOStratsBuilder.Model.Commands;
 using CSGOStratsBuilder.Model.Services;
-using CSGOStratsBuilder.Model.Stores;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
