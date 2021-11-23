@@ -18,14 +18,13 @@ namespace CSGOStratsBuilder {
 
             services.AddSingleton<NavigationStore>();
             services.AddSingleton<TeamStore>();
-            services.AddSingleton<ConfigStore>();
             services.AddSingleton<ModalNavigationStore>();
 
             services.AddSingleton<INavigationService>(s => CreateChooseTeamNavigationService(s));
             services.AddSingleton<CloseModalNavigationService>();
 
             services.AddTransient<AddTeamViewModel>(s => new AddTeamViewModel(s.GetRequiredService<TeamStore>(), s.GetRequiredService<CloseModalNavigationService>()));
-            services.AddTransient<ConfigViewModel>(s => new ConfigViewModel(CreateChooseTeamNavigationService(s), s.GetRequiredService<ConfigStore>()));
+            services.AddTransient<ConfigViewModel>(s => new ConfigViewModel(CreateChooseTeamNavigationService(s)));
             services.AddTransient<StratViewModel>(s => new StratViewModel());
             services.AddTransient<ChooseTeamViewModel>(s => new ChooseTeamViewModel(s.GetRequiredService<TeamStore>(), CreateAddTeamNavigationService(s), CreateConfigNavigationService(s)));
             services.AddTransient<NavigationBarViewModel>(CreateNavigationBarViewModel);

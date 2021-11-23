@@ -10,12 +10,10 @@ using System.Windows.Documents;
 namespace CSGOStratsBuilder.Model.Commands {
     public class ConfigTeamCommand : CommandBase {
         private readonly ConfigViewModel _viewModel;
-        private readonly ConfigStore _configStore;
         private readonly INavigationService _navigationService;
 
-        public ConfigTeamCommand(ConfigViewModel viewModel, ConfigStore configStore, INavigationService navigationService) {
+        public ConfigTeamCommand(ConfigViewModel viewModel, INavigationService navigationService) {
             _viewModel = viewModel;
-            _configStore = configStore;
             _navigationService = navigationService;
         }
 
@@ -33,9 +31,7 @@ namespace CSGOStratsBuilder.Model.Commands {
             List<string> roleT = new List<string>() { _viewModel.FirstRoleT, _viewModel.SecondRoleT, _viewModel.ThirdRoleT, _viewModel.FourthRoleT, _viewModel.FifthRoleT };
             List<string> roleCT = new List<string>() { _viewModel.FirstRoleCT, _viewModel.SecondRoleCT, _viewModel.ThirdRoleCT, _viewModel.FourthRoleCT, _viewModel.FifthRoleCT };
 
-            Team team = createConfigurationTeam.CreateTeam(url, teamName, roleT, roleCT, playersName);  
-
-            _configStore.CurrentTeam = team;
+            createConfigurationTeam.CreateTeam(url, teamName, roleT, roleCT, playersName);  
 
             _navigationService.Navigate();
         }

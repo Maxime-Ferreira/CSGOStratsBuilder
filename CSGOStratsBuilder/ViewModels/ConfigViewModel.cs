@@ -180,10 +180,10 @@ namespace CSGOStratsBuilder.ViewModels {
         public IEnumerable<string> RoleT => _roleT;
         public IEnumerable<string> RoleCT => _roleCT;
 
-        public ConfigViewModel(INavigationService validateConfig, ConfigStore configStore) {
+        public ConfigViewModel(INavigationService validateConfig) {
             _roleT = new ObservableCollection<string>() { "Entry", "Entry2", "Awper", "Lurker", "Support" };
             _roleCT = new ObservableCollection<string>() { "Fixe", "Pivot", "Awper" };
-            ValidateConfig = new ConfigTeamCommand(this, configStore, validateConfig);
+            ValidateConfig = new ConfigTeamCommand(this, validateConfig);
         }
     }
 }
