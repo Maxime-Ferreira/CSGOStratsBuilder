@@ -9,26 +9,26 @@
     <Grid>
         <Label Content="Choisissez les 5 joueurs de l'équipe" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top"/>
         <Label Content="{Binding TeamName}" HorizontalAlignment="Left" Margin="538,55,0,0" VerticalAlignment="Top" Width="152" Height="26"/>
-        <Button Content="Choisir le capitaine" HorizontalAlignment="Center" Margin="0,358,0,0" VerticalAlignment="Top" Width="152" Height="33" Background="LightGreen" Command="{Binding ChooseCaptainCommand}"/>
+        <Button Content="Valider la configuration" HorizontalAlignment="Center" Margin="0,358,0,0" VerticalAlignment="Top" Width="152" Height="33" Background="LightGreen" Command="{Binding ValidateConfig}" CommandParameter=""/>
         <Label Content="Sélectionner le rôle T de chaque joueur" HorizontalAlignment="Center" Margin="0,163,0,0" VerticalAlignment="Top"/>
 
-        <TextBox x:Name="firstPlayerText" TextAlignment="Center" HorizontalAlignment="Left" Margin="26,116,0,0" Text="Player 1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="secondPlayerText" TextAlignment="Center" HorizontalAlignment="Left" Margin="183,116,0,0" Text="Player 2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="thirdPlayerText" TextAlignment="Center" HorizontalAlignment="Center" Margin="0,116,0,0" Text="Player 3" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="fourthPlayerText" TextAlignment="Center" HorizontalAlignment="Left" Margin="497,116,0,0" Text="Player 4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="fifthPlayerText" TextAlignment="Center" Margin="654,116,26,0" Text="Player 5" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="firstPlayerText" TextAlignment="Center" HorizontalAlignment="Left" Margin="26,116,0,0" Text="{Binding FirstPlayer}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="secondPlayerText" TextAlignment="Center" HorizontalAlignment="Left" Margin="183,116,0,0" Text="{Binding SecondPlayer}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="thirdPlayerText" TextAlignment="Center" HorizontalAlignment="Center" Margin="0,116,0,0" Text="{Binding ThirdPlayer}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="fourthPlayerText" TextAlignment="Center" HorizontalAlignment="Left" Margin="497,116,0,0" Text="{Binding FourthPlayer}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="fifthPlayerText" TextAlignment="Center" Margin="654,116,26,0" Text="{Binding FifthPlayer}" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
-        <ComboBox x:Name="firstPlayerCb" HorizontalAlignment="Left" Margin="26,201,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding RoleT}"/>
-        <ComboBox x:Name="secondPlayerCb" HorizontalAlignment="Left" Margin="183,201,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding RoleT}"/>
-        <ComboBox x:Name="thirdPlayerCb" HorizontalAlignment="Center" Margin="0,201,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding RoleT}"/>
-        <ComboBox x:Name="fourthPlayerCb" HorizontalAlignment="Left" Margin="497,201,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding RoleT}"/>
-        <ComboBox x:Name="fifthPlayerCb" HorizontalAlignment="Left" Margin="654,201,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding RoleT}"/>
+        <ComboBox x:Name="firstPlayerCb" HorizontalAlignment="Left" Margin="26,201,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding RoleT}" SelectedValue="{Binding FirstRoleT}"/>
+        <ComboBox x:Name="secondPlayerCb" HorizontalAlignment="Left" Margin="183,201,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding RoleT}" SelectedValue="{Binding SecondRoleT}"/>
+        <ComboBox x:Name="thirdPlayerCb" HorizontalAlignment="Center" Margin="0,201,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding RoleT}" SelectedValue="{Binding ThirdRoleT}"/>
+        <ComboBox x:Name="fourthPlayerCb" HorizontalAlignment="Left" Margin="497,201,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding RoleT}" SelectedValue="{Binding FourthRoleT}"/>
+        <ComboBox x:Name="fifthPlayerCb" HorizontalAlignment="Left" Margin="654,201,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding RoleT}" SelectedValue="{Binding FifthRoleT}"/>
 
-        <ComboBox x:Name="firstPlayerCbCT" HorizontalAlignment="Left" Margin="26,292,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding RoleCT}"/>
-        <ComboBox x:Name="secondPlayerCbCT" HorizontalAlignment="Left" Margin="183,292,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding RoleCT}"/>
-        <ComboBox x:Name="thirdPlayerCbCT" HorizontalAlignment="Center" Margin="0,292,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding RoleCT}"/>
-        <ComboBox x:Name="fourthPlayerCbCT" HorizontalAlignment="Left" Margin="497,292,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding RoleCT}"/>
-        <ComboBox x:Name="fifthPlayerCbCT" HorizontalAlignment="Left" Margin="654,292,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding RoleCT}"/>
+        <ComboBox x:Name="firstPlayerCbCT" HorizontalAlignment="Left" Margin="26,292,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding RoleCT}" SelectedValue="{Binding FirstRoleCT}"/>
+        <ComboBox x:Name="secondPlayerCbCT" HorizontalAlignment="Left" Margin="183,292,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding RoleCT}" SelectedValue="{Binding SecondRoleCT}"/>
+        <ComboBox x:Name="thirdPlayerCbCT" HorizontalAlignment="Center" Margin="0,292,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding RoleCT}" SelectedValue="{Binding ThirdRoleCT}"/>
+        <ComboBox x:Name="fourthPlayerCbCT" HorizontalAlignment="Left" Margin="497,292,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding RoleCT}" SelectedValue="{Binding FourthRoleCT}"/>
+        <ComboBox x:Name="fifthPlayerCbCT" HorizontalAlignment="Left" Margin="654,292,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding RoleCT}" SelectedValue="{Binding FifthRoleCT}"/>
 
         <Label Content="Sélectionner le rôle CT de chaque joueur" HorizontalAlignment="Center" Margin="0,254,0,0" VerticalAlignment="Top"/>
     </Grid>

@@ -12,7 +12,5 @@
         public RoleT RoleT { get; set; }
 
         public RoleCT RoleCT { get; set; }
-
-        public bool IsCaptain { get; set; }
     }
 }

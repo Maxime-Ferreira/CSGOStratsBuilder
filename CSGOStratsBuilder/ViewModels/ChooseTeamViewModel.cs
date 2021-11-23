@@ -13,7 +13,7 @@ namespace CSGOStratsBuilder.ViewModels {
 
         public IEnumerable<TeamViewModel> Team => _team;
         public ICommand AddTeamCommand { get; }
-        public ICommand ConfigCommand { get; }
+        public ICommand ChooseTeamCommand { get; }
         public ICommand DeleteTeamCommand { get; }
 
         private CreateTeamFile createTeamFile = new CreateTeamFile();
@@ -24,7 +24,7 @@ namespace CSGOStratsBuilder.ViewModels {
 
             _teamStore = teamStore;
             AddTeamCommand = new NavigateCommand(addTeamNavigationService);
-            ConfigCommand = new ConfigTeamCommand(configNavigationService);
+            ChooseTeamCommand = new ChooseTeamCommand(configNavigationService);
             DeleteTeamCommand = new DeleteTeamCommand();
             _team = new ObservableCollection<TeamViewModel>();
             foreach(string team in teamsAlreadyAdded) {
