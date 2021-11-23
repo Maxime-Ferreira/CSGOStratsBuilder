@@ -4,6 +4,7 @@ using CSGOStratsBuilder.Model.Stores;
 using CSGOStratsBuilder.Model.UseCase;
 using CSGOStratsBuilder.ViewModels;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Documents;
 
 namespace CSGOStratsBuilder.Model.Commands {
@@ -23,7 +24,10 @@ namespace CSGOStratsBuilder.Model.Commands {
             string url = "..\\..\\Teams\\config_" + teamName;
 
             CreateConfigurationTeam createConfigurationTeam = new CreateConfigurationTeam();
-            createConfigurationTeam.CreateConfigFile(url, teamName);
+
+            if (!File.Exists(url)) {
+                createConfigurationTeam.CreateConfigFile(url, teamName);
+            }
 
             List<string> playersName = new List<string>() { _viewModel.FirstPlayer, _viewModel.SecondPlayer, _viewModel.ThirdPlayer, _viewModel.FourthPlayer, _viewModel.FifthPlayer };
             List<string> roleT = new List<string>() { _viewModel.FirstRoleT, _viewModel.SecondRoleT, _viewModel.ThirdRoleT, _viewModel.FourthRoleT, _viewModel.FifthRoleT };
