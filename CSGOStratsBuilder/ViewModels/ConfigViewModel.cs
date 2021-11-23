@@ -7,17 +7,6 @@ using System.Windows.Input;
 
 namespace CSGOStratsBuilder.ViewModels {
     public class ConfigViewModel : BaseViewModel {
-        private string _name;
-        public string TeamName {
-            get {
-                return _name;
-            }
-            set {
-                _name = value;
-                OnPropertyChanged(nameof(TeamName));
-            }
-        }
-
         private string _firstPlayer;
         public string FirstPlayer {
             get {
@@ -192,10 +181,9 @@ namespace CSGOStratsBuilder.ViewModels {
         public IEnumerable<string> RoleCT => _roleCT;
 
         public ConfigViewModel(INavigationService validateConfig, ConfigStore configStore) {
-            ValidateConfig = new ConfigTeamCommand(this, configStore, validateConfig);
-            TeamName = ChooseTeamCommand.TeamName;
             _roleT = new ObservableCollection<string>() { "Entry", "Entry2", "Awper", "Lurker", "Support" };
             _roleCT = new ObservableCollection<string>() { "Fixe", "Pivot", "Awper" };
+            ValidateConfig = new ConfigTeamCommand(this, configStore, validateConfig);
         }
     }
 }
