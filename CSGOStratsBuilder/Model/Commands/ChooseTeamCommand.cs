@@ -14,8 +14,10 @@ namespace CSGOStratsBuilder.Model.Commands {
 
         public override void Execute(object parameter) {
             IList items = (IList)parameter;
-            TeamName = items.Cast<TeamViewModel>().First().Name;
-            _navigationService.Navigate();
+            if(items.Count != 0) {
+                TeamName = items.Cast<TeamViewModel>().First().Name;
+                _navigationService.Navigate();
+            }
         }
     }
 }
