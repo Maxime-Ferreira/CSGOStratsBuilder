@@ -1,5 +1,6 @@
 ﻿using CSGOStratsBuilder.Model.Services;
 using CSGOStratsBuilder.ViewModels;
+using System.Collections;
 using System.Linq;
 
 namespace CSGOStratsBuilder.Model.Commands {
@@ -12,7 +13,7 @@ namespace CSGOStratsBuilder.Model.Commands {
         }
 
         public override void Execute(object parameter) {
-            System.Collections.IList items = (System.Collections.IList)parameter;
+            IList items = (IList)parameter;
             TeamName = items.Cast<TeamViewModel>().First().Name;
             _navigationService.Navigate();
         }

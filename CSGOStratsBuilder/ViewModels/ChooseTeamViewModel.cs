@@ -16,8 +16,9 @@ namespace CSGOStratsBuilder.ViewModels {
         public ICommand ChooseTeamCommand { get; }
         public ICommand DeleteTeamCommand { get; }
 
-        private CreateTeamFile createTeamFile = new CreateTeamFile();
-        private ReadTeamFile readTeamFile = new ReadTeamFile();
+        private readonly CreateTeamFile createTeamFile = new CreateTeamFile();
+        private readonly ReadTeamFile readTeamFile = new ReadTeamFile();
+        private readonly DeleteTeam deleteTeam = new DeleteTeam();
 
         public ChooseTeamViewModel(TeamStore teamStore, INavigationService addTeamNavigationService, INavigationService configNavigationService) {
             List<string> teamsAlreadyAdded = readTeamFile.Execute();
@@ -25,17 +26,29 @@ namespace CSGOStratsBuilder.ViewModels {
             _teamStore = teamStore;
             AddTeamCommand = new NavigateCommand(addTeamNavigationService);
             ChooseTeamCommand = new ChooseTeamCommand(configNavigationService);
-            DeleteTeamCommand = new DeleteTeamCommand();
+            DeleteTeamCommand = new DeleteTeamCommand(teamStore);
             _team = new ObservableCollection<TeamViewModel>();
             foreach(string team in teamsAlreadyAdded) {
                 _team.Add(new TeamViewModel(team));
             }
             _teamStore.TeamAdded += OnTeamAdded;
+            _teamStore.TeamDeleted += OnTeamDeleted;
         }
 
         private void OnTeamAdded(string name) {
             _team.Add(new TeamViewModel(name));
             createTeamFile.Execute(name);
+        }
+
+        private void OnTeamDeleted(string name) {
+            TeamViewModel teamViewModelToDelete = null;
+            foreach(TeamViewModel teamViewModel in _team) {
+                if(teamViewModel.Name == name && teamViewModel != null) {
+                    teamViewModelToDelete = teamViewModel;
+                }
+            }
+            _team.Remove(teamViewModelToDelete);
+            deleteTeam.Execute("..\\..\\Teams\\teams.xml", name);
         }
     }
 }

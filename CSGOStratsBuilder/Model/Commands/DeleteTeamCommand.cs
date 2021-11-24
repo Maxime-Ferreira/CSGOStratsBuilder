@@ -1,16 +1,23 @@
-﻿using CSGOStratsBuilder.Model.UseCase;
+﻿using CSGOStratsBuilder.Model.Services;
+using CSGOStratsBuilder.Model.Stores;
+using CSGOStratsBuilder.Model.UseCase;
 using CSGOStratsBuilder.ViewModels;
+using System.Collections;
 using System.Linq;
 
 namespace CSGOStratsBuilder.Model.Commands {
     public class DeleteTeamCommand : CommandBase {
-        DeleteTeam deleteTeam = new DeleteTeam();
-        public static string TeamName;
+        private readonly TeamStore _teamStore;
+        
+
+        public DeleteTeamCommand(TeamStore teamStore) {
+            _teamStore = teamStore;
+        }
 
         public override void Execute(object parameter) {
-            System.Collections.IList items = (System.Collections.IList)parameter;
-            TeamName = items.Cast<TeamViewModel>().First().Name;
-            deleteTeam.Execute("..\\..\\Teams\\teams.xml", TeamName);
+            IList items = (IList)parameter;
+            string name = items.Cast<TeamViewModel>().First().Name;
+            _teamStore.DeleteTeam(name);
         }
     }
 }

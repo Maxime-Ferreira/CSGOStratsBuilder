@@ -9,5 +9,11 @@ namespace CSGOStratsBuilder.Model.Stores {
         {
             TeamAdded?.Invoke(name);
         }
+
+        public event Action<string> TeamDeleted;
+
+        public void DeleteTeam(string name) {
+            TeamDeleted?.Invoke(name);
+        }
     }
 }
