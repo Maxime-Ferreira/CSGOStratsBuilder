@@ -1,4 +1,5 @@
-﻿using CSGOStratsBuilder.Model.Services;
+﻿using CSGOStratsBuilder.Model.Domain;
+using CSGOStratsBuilder.Model.Services;
 using CSGOStratsBuilder.Model.UseCase;
 using CSGOStratsBuilder.ViewModels;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace CSGOStratsBuilder.Model.Commands {
         }
 
         public override void Execute(object parameter) {
-            string teamName = ChooseTeamCommand.TeamName;
+            string teamName = Constants.TeamName;
             string url = "..\\..\\Teams\\config_" + teamName;
 
             CreateConfigurationTeam createConfigurationTeam = new CreateConfigurationTeam();
