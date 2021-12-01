@@ -26,7 +26,7 @@ namespace CSGOStratsBuilder {
             services.AddTransient<AddTeamViewModel>(s => new AddTeamViewModel(s.GetRequiredService<TeamStore>(), s.GetRequiredService<CloseModalNavigationService>()));
             services.AddTransient<ConfigViewModel>(s => new ConfigViewModel(CreateChooseTeamNavigationService(s)));
             services.AddTransient<StratViewModel>(s => new StratViewModel());
-            services.AddTransient<ChooseTeamViewModel>(s => new ChooseTeamViewModel(s.GetRequiredService<TeamStore>(), CreateAddTeamNavigationService(s), CreateConfigNavigationService(s)));
+            services.AddTransient<ChooseTeamViewModel>(s => new ChooseTeamViewModel(s.GetRequiredService<TeamStore>(), CreateAddTeamNavigationService(s), CreateConfigNavigationService(s), CreateStratNavigationService(s)));
             services.AddTransient<NavigationBarViewModel>(CreateNavigationBarViewModel);
             services.AddSingleton<MainViewModel>();
 
@@ -60,11 +60,17 @@ namespace CSGOStratsBuilder {
                 () => serviceProvider.GetRequiredService<NavigationBarViewModel>());
         }
 
-        private INavigationService CreateStratNavigationService(IServiceProvider serviceProvider) {
+        private INavigationService CreateStratNavigationServiceInLayout(IServiceProvider serviceProvider) {
             return new LayoutNavigationService<StratViewModel>(
                 serviceProvider.GetRequiredService<NavigationStore>(),
                 () => serviceProvider.GetRequiredService<StratViewModel>(),
                 () => serviceProvider.GetRequiredService<NavigationBarViewModel>());
+        }
+
+        private INavigationService CreateStratNavigationService(IServiceProvider serviceProvider) {
+            return new NavigationService<StratViewModel>(
+                serviceProvider.GetRequiredService<NavigationStore>(),
+                () => serviceProvider.GetRequiredService<StratViewModel>());
         }
 
         private INavigationService CreateChooseTeamNavigationService(IServiceProvider serviceProvider) {

@@ -7,6 +7,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Label Content="strat view" HorizontalAlignment="Left" Margin="257,168,0,0" VerticalAlignment="Top"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical" Grid.Column="0">
+            <Label Margin="10" Height="35" Content="{Binding TeamName}"/>
+        </StackPanel>
+        <Image x:Name="de_inferno"  Source="pack://application:,,,/Model/Images/de_inferno.png" Grid.Column="1"/>
     </Grid>
 </UserControl>

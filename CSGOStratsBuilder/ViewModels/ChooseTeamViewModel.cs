@@ -15,18 +15,20 @@ namespace CSGOStratsBuilder.ViewModels {
         public ICommand AddTeamCommand { get; }
         public ICommand ChooseTeamCommand { get; }
         public ICommand DeleteTeamCommand { get; }
+        public ICommand StratTeam { get; }
 
         private readonly CreateTeamFile createTeamFile = new CreateTeamFile();
         private readonly ReadTeamFile readTeamFile = new ReadTeamFile();
         private readonly DeleteTeam deleteTeam = new DeleteTeam();
 
-        public ChooseTeamViewModel(TeamStore teamStore, INavigationService addTeamNavigationService, INavigationService configNavigationService) {
+        public ChooseTeamViewModel(TeamStore teamStore, INavigationService addTeamNavigationService, INavigationService configNavigationService, INavigationService stratViewNavigationService) {
             List<string> teamsAlreadyAdded = readTeamFile.Execute();
 
             _teamStore = teamStore;
             AddTeamCommand = new NavigateCommand(addTeamNavigationService);
             ChooseTeamCommand = new ChooseTeamCommand(configNavigationService);
             DeleteTeamCommand = new DeleteTeamCommand(teamStore);
+            StratTeam = new StratViewCommand(stratViewNavigationService);
             _team = new ObservableCollection<TeamViewModel>();
             foreach(string team in teamsAlreadyAdded) {
                 _team.Add(new TeamViewModel(team));

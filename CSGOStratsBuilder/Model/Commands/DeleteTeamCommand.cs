@@ -1,6 +1,4 @@
-﻿using CSGOStratsBuilder.Model.Services;
-using CSGOStratsBuilder.Model.Stores;
-using CSGOStratsBuilder.Model.UseCase;
+﻿using CSGOStratsBuilder.Model.Stores;
 using CSGOStratsBuilder.ViewModels;
 using System.Collections;
 using System.Linq;
@@ -9,7 +7,6 @@ namespace CSGOStratsBuilder.Model.Commands {
     public class DeleteTeamCommand : CommandBase {
         private readonly TeamStore _teamStore;
         
-
         public DeleteTeamCommand(TeamStore teamStore) {
             _teamStore = teamStore;
         }
